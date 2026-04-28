@@ -1,0 +1,327 @@
+/* TOP STRIP */
+.top-strip{
+    background: linear-gradient(to right, #4A2C2A, #2c1a18);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+/* HERO */
+.hero {
+    background: url('../Images/Librarybg/homepagef/home1backg.jpg') center/cover no-repeat;
+    height: 75vh;
+    min-height: 500px;
+    max-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+/* OVERLAY */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* TEXT */
+.hero-title {
+    font-size: 60px;
+    font-weight: 700;
+    background: linear-gradient(45deg, #fff, #f5d7b5);
+    -webkit-background-clip: text;
+    color: transparent;
+    opacity: 0;
+    animation: fadeInUp 1.5s ease forwards;
+}
+
+.hero-sub {
+    color: #eee;
+    font-size: 1.2rem;
+    margin-top: 15px;
+    opacity: 0;
+    animation: fadeInUp 2s ease forwards;
+}
+
+/* ANIMATION */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* SECTIONS */
+section{ padding: 80px 0; }
+
+/* FEATURE BOX */
+.feature-box{
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 25px;
+    color: #fff;
+    transition: 0.4s;
+}
+
+.feature-box:hover{
+    transform: translateY(-10px) scale(1.05);
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* DARK */
+.bg-dark{
+    background: linear-gradient(to right, #2c1a18, #4A2C2A) !important;
+}
+
+/* HEADINGS */
+h2{
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* SCROLL ANIMATION */
+.fade-in{
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1s;
+}
+.fade-in.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ABOUT */
+.about-section{
+    background: url('../Images/Books/esra-afsar-5VZUBeY3mAw-unsplash.jpg') center/cover no-repeat;
+    position: relative;
+    min-height: 500px;
+    color: white;
+}
+
+.about-section::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 1;
+}
+
+.about-section .container{
+    position: relative;
+    z-index: 2;
+}
+
+.about{
+    position: relative;
+    top: 75px;
+}
+
+/* CTA */
+.cta-section{
+    background: linear-gradient(135deg, #2c1a18, #4A2C2A);
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+}
+
+.cta-section::before,
+.cta-section::after{
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    filter: blur(80px);
+}
+
+.cta-section::before{
+    top: -50px;
+    left: -50px;
+}
+
+.cta-section::after{
+    bottom: -50px;
+    right: -50px;
+}
+
+/* ICON SIZE */
+.feature-box h3{
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+/* PAGE SWITCH */
+.page{
+    display: none;
+}
+.page.active{
+    display: block;
+    width: 100%;
+}
+
+/* LOCATE & ISSUE */
+#locate,#issue{
+    background-image: url('../Images/Librarybg/search/searchbg.jpeg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    padding-top: 90px;  
+}
+
+/* BOX */
+.box {
+    background: rgba(255,255,255,0.92);
+    border-radius: 15px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* RACK */
+.rack {
+    border: 10px solid #5c2c06;
+    background-color: #8b4513;
+    border-radius: 8px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 160px;
+    margin: auto;
+}
+
+.s {
+    height: 70px;
+    background-color: #5a2d0c;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-weight: bold;
+}
+table img {
+    border-radius: 5px;
+}
+#ebooks{
+    background-image: url('../Images/E-books/E-booksbackg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.ebook-card{
+    height: 270px;
+    width: 150px;
+    background-color: rgba(250,235,215,0.85);
+}
+
+.ebook-card img{
+    height: 150px;
+    object-fit: cover;
+}
+.card-title{
+    font-size: 13px !important;
+}
+.card-text{
+    font-size: 9px;
+}
+.small-btn{
+    height: 20px;
+    font-size: 10px;
+}
+#missing{
+    padding-top: 90px;
+    background: url("https://images.unsplash.com/photo-1507842217343-583bb7270b66") no-repeat center/cover;
+    position: relative;
+}
+
+#missing::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+}
+.main-content {
+    min-height: calc(100vh - 90px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.h{
+    display:none;
+}
+/* INPUTS */
+.form-control, .form-select{
+    border-radius: 10px;
+}
+.btn{
+    border-radius: 10px;
+}
+
+/* BOOK IMAGE */
+#selectedBook img{
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+/* FULL SCREEN OVERLAY */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: none; /* hidden initially */
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,0.4); /* dark layer */
+    backdrop-filter: blur(5px); /* 🔥 blur effect */
+    z-index: 1000;
+}
+
+/* POPUP BOX */
+.popup {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+}
+/* FIX NAVBAR OVERLAP */
+
+/* NAVBAR */
+.nav-item{ margin-right: 25px; }
+
+.navbar{
+    height: 90px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: 0.3s;
+}
+
+.navbar.bg-body-tertiary {
+    background-color: rgb(250,235,215) !important;
+}
+
+.logo{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+ul{ margin-left: 50px; }
