@@ -316,7 +316,32 @@ table img {
 
 <body>
 
-<div id="navbar"></div>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<div class="container-fluid">
+
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+<img class="logo" src="../Images/Librarybg/homepagef/logo.png" alt="Logo">
+
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item"><a class="nav-link active" href="homepagef.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" onclick="showPage('locate')">Locate</a></li>
+<li class="nav-item"><a class="nav-link" onclick="showPage('issue')">Issue</a></li>
+<li class="nav-item"><a class="nav-link" onclick="showPage('missing')">Missing book Complaint</a></li>
+<li class="nav-item"><a class="nav-link" onclick="showPage('ebooks')">E-books</a></li>
+<li class="nav-item"><a class="nav-link">FAQ</a></li>
+<li class="nav-item"><a class="nav-link" >About</a></li>
+<li class="nav-item"><a class="nav-link" >Contact Us</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
 
 <!-- HOME -->
 <section id="home" class="page active">
@@ -528,25 +553,173 @@ table img {
 <!-- EBOOK -->
 <section id="ebooks" class="page">
 <div class="container mt-4">
-<h2 class="text-center mb-4">Available E-Books</h2>
-<div class="row g-4">
-<div class="col-md-2 col-6">
-<div class="card ebook-card shadow">
-<img src="../Images/E-books/b1.jpg">
-<div class="card-body">
-<h5 class="card-title">Programmer</h5>
-</div>
-<div class="card-footer text-center">
-<a href="#" class="btn btn-primary small-btn">Read</a>
-</div>
-</div>
-</div>
+    <h2 class="text-center mb-4">Available E-Books</h2><br><br>
+    <div class="row g-4">
+        <div class="col-md-2 col-sm-4 col-6">
+            <div class="card shadow h-100">
+                <img src="../Images/E-books/b1.jpg" class="card-img-top" alt="Book Image">
 
-</div>
+                <div class="card-body">
+                    <h5 class="card-title">The Programatic Programmer</h5>
+                </div>
+
+                <div class="card-footer text-center">
+                    <a href="../E-bookspdf/020161622X.pdf" class="btn btn-primary">ReadBook </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-6">
+            <div class="card shadow h-100">
+                <img src="../Images/E-books/b2.jpg" class="card-img-top" alt="Book Image">
+
+                <div class="card-body">
+                    <h5 class="card-title">Computer Science Engineering</h5>
+                </div>
+
+                <div class="card-footer text-center">
+                    <a href="../E-bookspdf/ComputerScience.pdf" class="btn btn-primary">ReadBook </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-6">
+            <div class="card shadow h-100">
+                <img src="../Images/E-books/b3.jpg" class="card-img-top" alt="Book Image">
+
+                <div class="card-body">
+                    <h5 class="card-title">Math For Computing</h5>
+                    
+                </div>
+
+                <div class="card-footer text-center">
+                    <a href="../E-bookspdf/mathematics-for-computing.pdf" class="btn btn-primary">ReadBook </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-6">
+            <div class="card shadow h-100">
+                <img src="../Images/E-books/b4.jpg" class="card-img-top" alt="Book Image">
+
+                <div class="card-body">
+                    <h5 class="card-title">Engineering Math</h5>
+                </div>
+
+                <div class="card-footer text-center">
+                    <a href="#" class="btn btn-primary">ReadBook </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-6">
+            <div class="card shadow h-100">
+                <img src="../Images/E-books/b5.jpg" class="card-img-top" alt="Book Image">
+
+                <div class="card-body">
+                    <h5 class="card-title">Artificial Intelligence</h5>
+                </div>
+
+                <div class="card-footer text-center">
+                    <a href="../E-bookspdf/ai.pdf" class="btn btn-primary">ReadBook </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-6">
+            <div class="card shadow h-100">
+                <img src="../Images/E-books/b6.jpg" class="card-img-top" alt="Book Image">
+
+                <div class="card-body">
+                    <h5 class="card-title">Image Processing</h5>
+                </div>
+
+                <div class="card-footer text-center">
+                    <a href="#" class="btn btn-primary">ReadBook </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br><br>
+    <div class="row g-4">
+        <div class="col-md-2 col-sm-4 col-6">
+            <div class="card shadow h-100">
+                <img src="../Images/E-books/b7.jpg" class="card-img-top" alt="Book Image">
+
+                <div class="card-body">
+                    <h5 class="card-title">DeepFake Dilemma</h5>
+                </div>
+
+                <div class="card-footer text-center">
+                    <a href="#" class="btn btn-primary">ReadBook </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-6">
+            <div class="card shadow h-100">
+                <img src="../Images/E-books/b8.jpg" class="card-img-top" alt="Book Image">
+
+                <div class="card-body">
+                    <h5 class="card-title">The Nature Of Technology</h5>
+                </div>
+
+                <div class="card-footer text-center">
+                    <a href="#" class="btn btn-primary">ReadBook </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-6">
+            <div class="card shadow h-100">
+                <img src="../Images/E-books/b9.jpg" class="card-img-top" alt="Book Image">
+
+                <div class="card-body">
+                    <h5 class="card-title">Deep Learning and Applications</h5>
+                </div>
+
+                <div class="card-footer text-center">
+                    <a href="#" class="btn btn-primary">ReadBook </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-6">
+            <div class="card shadow h-100">
+                <img src="../Images/E-books/b10.jpg" class="card-img-top" alt="Book Image">
+
+                <div class="card-body">
+                    <h5 class="card-title">Quantum Computing</h5>
+                </div>
+
+                <div class="card-footer text-center">
+                    <a href="../E-bookspdf/qm.pdf" class="btn btn-primary">ReadBook </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-6">
+            <div class="card shadow h-100">
+                <img src="../Images/E-books/b11.jpg" class="card-img-top" alt="Book Image">
+
+                <div class="card-body">
+                    <h5 class="card-title">BlackChain Technology</h5>
+                </div>
+
+                <div class="card-footer text-center">
+                    <a href="#" class="btn btn-primary">ReadBook </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-6">
+            <div class="card shadow h-100">
+                <img src="../Images/E-books/b12.jpg" class="card-img-top" alt="Book Image">
+
+                <div class="card-body">
+                    <h5 class="card-title">The Machine Learning</h5>
+                </div>
+
+                <div class="card-footer text-center">
+                    <a href="#" class="btn btn-primary">ReadBook </a>
+                </div>
+            </div>
+        </div>
+
+    </div><br><br>
 </div>
 </section>
-
-<script src="nav.js"></script>
 
 <script src="data.js"></script>
 
