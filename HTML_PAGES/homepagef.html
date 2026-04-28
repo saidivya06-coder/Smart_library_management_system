@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Library</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="navbar.css">
+<style>
+    body{
+        padding-top: 90px;
+    }
+/* TOP STRIP */
+.top-strip{
+    background: linear-gradient(to right, #4A2C2A, #2c1a18);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+/* HERO */
+.hero {
+    background: url('../Images/Librarybg/homepagef/home1backg.jpg') center/cover no-repeat;
+    height: 75vh;
+    min-height: 500px;
+    max-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+/* OVERLAY */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* TEXT */
+.hero-title {
+    font-size: 60px;
+    font-weight: 700;
+    background: linear-gradient(45deg, #fff, #f5d7b5);
+    -webkit-background-clip: text;
+    color: transparent;
+    opacity: 0;
+    animation: fadeInUp 1.5s ease forwards;
+}
+
+.hero-sub {
+    color: #eee;
+    font-size: 1.2rem;
+    margin-top: 15px;
+    opacity: 0;
+    animation: fadeInUp 2s ease forwards;
+}
+
+
+
+/* ANIMATION */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* SECTIONS */
+section{ padding: 80px 0; }
+
+/* CARDS */
+.feature-box{
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 25px;
+    color: #fff;
+    transition: 0.4s;
+}
+.feature-box:hover{
+    transform: translateY(-10px) scale(1.02);
+}
+
+/* DARK */
+.bg-dark{
+    background: linear-gradient(to right, #2c1a18, #4A2C2A) !important;
+}
+
+/* HEADINGS */
+h2{
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* SCROLL ANIMATION */
+.fade-in{
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1s;
+}
+.fade-in.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<!-- TOP STRIP -->
+<div class="top-strip">
+📚 Welcome to the future of libraries — faster, smarter, simpler
+</div>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-content">
+<h1 class="hero-title">Smart Library System</h1>
+<p class="hero-sub">Discover, locate and access knowledge smarter than ever.</p>
+
+</div>
+</div>
+
+<!-- FEATURES -->
+<section class="bg-dark text-center">
+<div class="container">
+<h2 class="mb-5 text-light fade-in">Features</h2>
+
+<div class="row">
+<div class="col-md-4 fade-in">
+<div class="feature-box">
+<h5>🔍 Smart Search</h5>
+<p>Find books instantly using advanced search.</p>
+</div>
+</div>
+
+<div class="col-md-4 fade-in">
+<div class="feature-box">
+<h5>📍 Live Tracking</h5>
+<p>Know exactly where your book is located.</p>
+</div>
+</div>
+
+<div class="col-md-4 fade-in">
+<div class="feature-box">
+<h5>⚡ Fast Access</h5>
+<p>Check availability in real-time.</p>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="bg-light text-center">
+<div class="container">
+<h2 class="mb-5 fade-in">How It Works</h2>
+
+<div class="row">
+<div class="col-md-4 fade-in">
+<h4>1️⃣ Search</h4>
+<p>Enter book details.</p>
+</div>
+
+<div class="col-md-4 fade-in">
+<h4>2️⃣ Locate</h4>
+<p>Find exact shelf location.</p>
+</div>
+
+<div class="col-md-4 fade-in">
+<h4>3️⃣ Borrow</h4>
+<p>Issue the book easily.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="bg-dark text-light text-center">
+<div class="container">
+<h2 class="mb-5 fade-in">Why Students Love Us</h2>
+
+<div class="row">
+<div class="col-md-4 fade-in">
+<p>"This system made finding books so easy!"</p>
+<h6>- Student</h6>
+</div>
+
+<div class="col-md-4 fade-in">
+<p>"No more wasting time searching shelves."</p>
+<h6>- Library User</h6>
+</div>
+
+<div class="col-md-4 fade-in">
+<p>"Fast, accurate and super convenient."</p>
+<h6>- Reader</h6>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- CTA -->
+<section class="text-center bg-light">
+<div class="container">
+<h2 class="fade-in">Start Exploring</h2>
+<p class="mb-4 fade-in">Access thousands of books easily.</p>
+
+<a href="project.html" class="btn btn-dark">Search Books</a>
+</div>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer class="bg-dark text-light text-center p-3">
+<p>© Smart Library System</p>
+</footer>
+
+<!-- SCROLL ANIMATION -->
+<script>
+const elements = document.querySelectorAll('.fade-in');
+window.addEventListener('scroll', () => {
+elements.forEach(el => {
+const position = el.getBoundingClientRect().top;
+const screenHeight = window.innerHeight;
+if(position < screenHeight - 100){
+el.classList.add('show');
+}
+});
+});
+
+</script>
+<script src="nav.js">   </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

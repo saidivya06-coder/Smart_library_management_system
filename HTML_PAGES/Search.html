@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="navbar.css">
+<style>
+body {
+    background-image: url('../Images/Librarybg/search/searchbg.jpeg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; 
+     padding-top: 90px;  
+}
+.box {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+.rack {
+    border: 10px solid #5c2c06;
+    background-color: #8b4513;
+    border-radius: 8px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 160px;
+    margin: auto;
+}
+.s {
+    height: 70px;
+    background-color: #5a2d0c;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-weight: bold;
+}
+table img {
+    border-radius: 5px;
+}
+</style>
+</head>
+<body>
+<div id="navbar"></div>
+
+<div class="container mt-4">
+    <div class="row g-4">
+        <div class="col-md-7">
+            <div class="box">
+                <form id="searchform" class="mb-3">
+                    <div class="row g-2 mb-2">
+                        <div class="col-md-6">
+                            <input type="text" id="inputField" class="form-control" placeholder="Search" required>
+                        </div>
+                        <div class="col-md-6">
+                            <select id="dropdown" class="form-select" required>
+                                <option selected disabled>Search With</option>
+                                <option value="Book">Book Title</option>
+                                <option value="Author">Author</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-grid">
+                        <button class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+                <table class="table table-bordered table-hover text-center" id="Output"></table>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="box text-center">
+                <div id="SearchBook"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="data.js"></script>
+<script>
+let selectedOption = "";
+let inputField = document.getElementById('inputField');
+let outputDiv = document.getElementById('Output');
+let searchBookDiv = document.getElementById('SearchBook');
+let searchform = document.getElementById('searchform');
+document.getElementById('dropdown').addEventListener('change', function () {
+    selectedOption = this.value;
+    outputDiv.innerHTML = "";
+    searchBookDiv.innerHTML = "";
+    inputField.value = "";
+});
+searchform.addEventListener('submit', function (e) {
+    e.preventDefault();
+    let inputValue = inputField.value.toLowerCase();
+    outputDiv.innerHTML = "";
+    searchBookDiv.innerHTML = "";
+    let results = [];
+    if (selectedOption === "Book") {
+        results = books.filter(book =>
+            book.title.toLowerCase().includes(inputValue)
+        );
+    } 
+    else if (selectedOption === "Author") {
+        results = books.filter(book =>
+            book.author.toLowerCase().includes(inputValue)
+        );
+    }
+    if (results.length === 0) {
+        outputDiv.innerHTML = "<tr><td>No results found</td></tr>";
+        return;
+    }
+    outputDiv.innerHTML = `
+    <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Count</th>
+        <th>Locate</th>
+        <th>Issue</th>
+    </tr>`;
+    results.forEach(book => {
+        let row = outputDiv.insertRow();
+        row.id = book.id;
+        row.insertCell(0).innerHTML =
+        `<img src="${book.img}" width="50" onerror="this.src='https://via.placeholder.com/50'">`;
+        row.insertCell(1).textContent = book.title;
+        row.insertCell(2).textContent = book.author;
+        row.insertCell(3).textContent = book.count;
+        row.insertCell(4).innerHTML =
+        `<button class="btn btn-success btn-sm locate-btn" data-id="${book.id}">Locate</button>`;
+        row.insertCell(5).innerHTML =
+        `<button class="btn btn-warning btn-sm issue-btn" data-id="${book.id}">Issue</button>`;
+    });
+    document.querySelectorAll('.locate-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const id = Number(this.dataset.id);
+            const book = books.find(b => b.id === id);
+            let display = `
+            <h4 class="mb-3">Rack No ${book.location[0]}</h4>
+            <div class="rack">
+                <div class="s r1 s1">1</div>
+                <div class="s r1 s2">2</div>
+                <div class="s r1 s3">3</div>
+                <div class="s r2 s1">4</div>
+                <div class="s r2 s2">5</div>
+                <div class="s r2 s3">6</div>
+                <div class="s r3 s1">7</div>
+                <div class="s r3 s2">8</div>
+                <div class="s r3 s3">9</div>
+            </div>`;
+            searchBookDiv.innerHTML = display;
+            let cls = `s r${book.location[1]} s${book.location[2]}`;
+            let element = document.getElementsByClassName(cls)[0];
+            if (element) element.style.backgroundColor = "pink";
+        });
+    });
+    document.querySelectorAll('.issue-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const id = Number(this.dataset.id);
+            const bookData = books.find(b => b.id === id);
+            if (bookData.count > 0) {
+                bookData.count--;
+                document.getElementById(bookData.id).cells[3].textContent = bookData.count;
+                const d = new Date();
+d.setDate(d.getDate() + 15);
+
+                alert(`The Book "${bookData.title}" by ${bookData.author} has been issued to you. \n Please return it on or before ${d.toDateString()}.`);
+            } else {
+                alert("Book is out of stock!");
+            }
+        });
+    });
+});
+</script>
+<script src="nav.js"></script>
+</body>
+</html>

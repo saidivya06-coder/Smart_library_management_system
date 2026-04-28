@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Missing Book Payment</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="navbar.css">
+<script src="data.js"></script>
+<style>
+
+/* BACKGROUND */
+body {
+    padding-top: 90px;
+    background: url("https://images.unsplash.com/photo-1507842217343-583bb7270b66") no-repeat center center/cover;
+    font-family: 'Segoe UI', sans-serif;
+    position: relative;
+}
+
+/* overlay */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+}
+
+/* center only content, not navbar */
+.main-content {
+    min-height: calc(100vh - 90px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* MAIN CARD */
+.box{
+    width: 400px;
+    padding: 25px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+/* HIDDEN */
+.h{
+    display:none;
+}
+
+/* TEXT */
+h3, h5{
+    color: #1e3a5f;
+    font-weight: 600;
+}
+
+/* INPUTS */
+.form-control, .form-select{
+    border-radius: 10px;
+}
+
+/* BUTTONS */
+.btn{
+    border-radius: 10px;
+}
+
+/* BOOK IMAGE */
+#selectedBook img{
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+</style>
+</head>
+
+<body>
+<div id="navbar"></div> 
+<div class="main-content">
+<div class="box">
+
+
+
+<!-- STEP 1 -->
+<div id="S1">
+    <h3>Lost & Payment</h3>
+
+    <input type="text" id="bookName" class="form-control mb-2" placeholder="Enter Lost Book Name">
+    <input type="text" id="authorName" class="form-control mb-2" placeholder="Enter Author Name">
+    
+    <button class="btn btn-primary w-100" onclick="S1()">Next</button>
+</div>
+
+<!-- STEP 2 -->
+<div id="S2" class="h">
+    <div id="bookImage"></div>
+    <h5 id="bookTitle"></h5>
+    <h5 id="authorTitle"></h5>
+    <p id="bookPrice"></p>
+    <button class="btn btn-success w-100" onclick="S2()">Next</button>
+</div>
+
+<!-- STEP 3 -->
+<div id="s0" class="h">
+    <h3>User Details</h3>
+    <p id="uname"></p>
+    <p id="uemail"></p>
+    <p id="umobile"></p> 
+    <p id="uyear"></p>
+    <p id="ubranch"></p>
+    <p id="uroll"></p>
+
+    <button class="btn btn-primary w-100" onclick="goS1()">Confirm Your Details</button> 
+</div>
+
+<!-- STEP 4 -->
+<div id="S3" class="h">
+    <h5>Payment</h5>
+
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=payment" width="200">
+
+    <br><br>
+
+    <p id="finalAmount"></p>
+    <button class="btn btn-dark w-100" onclick="pay()">Pay</button>
+</div>
+
+</div>
+</div>
+<script>
+
+/* STEP 1 */
+function S1() {
+    let input1 = document.getElementById("bookName").value.toLowerCase().trim();
+    let input2 = document.getElementById("authorName").value.toLowerCase().trim();
+
+    if (input1 === "") {
+        alert("Enter book name");
+        return;
+    }
+    if (input2 === "") {
+        alert("Enter author name");
+        return;
+    }
+
+
+    let foundBook = books.find(book =>
+        book.title.toLowerCase() === input1 &&
+        book.author.toLowerCase() === input2
+    );
+
+    if (!foundBook) {
+        alert("Book not found!");
+        return;
+    }
+
+    /* 🔥 IMAGE FIXED HERE */
+    document.getElementById("bookImage").innerHTML = `
+        <img src="${foundBook.img}" width="150">
+    `;
+
+    document.getElementById("bookTitle").innerText = "Book: " + foundBook.title;
+    document.getElementById("authorTitle").innerText = "Author: " + foundBook.author;
+    document.getElementById("bookPrice").innerText = "Amount: ₹" + foundBook.price;
+
+    window.selectedPrice = foundBook.price;
+
+    document.getElementById("S1").style.display = "none";
+    document.getElementById("S2").style.display = "block";
+}
+
+/* STEP 2 */
+function S2() {
+    document.getElementById("finalAmount").innerText = "Pay ₹" + window.selectedPrice;
+/* LOAD USER DATA */
+    document.getElementById("uname").innerText ="Name: " + (localStorage.getItem("username") || "");
+document.getElementById("uemail").innerText="Email ID: " + (localStorage.getItem("email") || "");
+document.getElementById("umobile").innerText="Mobile No: " + (localStorage.getItem("mobileno") || "");
+document.getElementById("uyear").innerText ="Year: " + (localStorage.getItem("year") || "");
+document.getElementById("ubranch").innerText = "Branch: " + (localStorage.getItem("branch") || "");
+document.getElementById("uroll").innerText ="Roll No: " + (localStorage.getItem("rollno") || "");
+
+    document.getElementById("S2").style.display = "none";
+    document.getElementById("s0").style.display = "block";
+}
+
+
+
+
+/* STEP 3 */
+function goS1() {
+    document.getElementById("s0").style.display = "none";
+    document.getElementById("S3").style.display = "block";
+}
+
+/* STEP 4 */
+function pay(){
+    let un = localStorage.getItem("username") || "User";
+    alert("Payment successfully done ✅\nHope you never lose a book again! " + un);
+}
+
+</script>
+<script src="nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

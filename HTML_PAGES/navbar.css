@@ -1,0 +1,25 @@
+/* FIX NAVBAR OVERLAP */
+
+/* NAVBAR */
+.nav-item{ margin-right: 25px; }
+
+.navbar{
+    height: 90px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: 0.3s;
+}
+
+.navbar.bg-body-tertiary {
+    background-color: rgb(250,235,215) !important;
+}
+
+.logo{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+ul{ margin-left: 50px; }
