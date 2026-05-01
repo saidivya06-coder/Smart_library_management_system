@@ -317,6 +317,48 @@ Lodge a missing complaint by filling out the for in the complaint page.
 </div>
 </div>
 </section>
+    <section id="missing" class="page">
+    <div class="container mt-4">
+<div class="row justify-content-center">
+
+<div class="col-md-8">
+<div class="box text-center">
+
+<h3 class="mb-3">📚 Missing Book Complaint</h3>
+
+<!-- LOGIN FORM -->
+<div id="loginSection">
+    <input type="text" id="name" class="form-control" placeholder="Username">
+    <input type="number" id="roll" class="form-control" placeholder="UserID">
+    <input type="text" id="book" class="form-control" placeholder="Missing Book Title">
+    <input type="text" id="author" class="form-control" placeholder="Author">
+
+    <button class="btn btn-primary w-100 mt-2" onclick="login()">Continue</button>
+</div>
+
+<!-- QR SECTION -->
+<div id="qrSection" class="d-none mt-4">
+    <h5>Payment & Book Details</h5>
+
+    <div class="d-flex justify-content-center align-items-center gap-4 flex-wrap">
+
+        <div class="p-3 bg-light rounded" id="bookDetails"></div>
+
+        <div class="text-center">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=payment">
+            <br><br>
+            <button class="btn btn-dark" onclick="pay()">Pay</button>
+        </div>
+
+    </div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+</section>
 
 <!-- EBOOK -->
 <section id="ebooks" class="page">

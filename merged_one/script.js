@@ -280,3 +280,48 @@ document.addEventListener("DOMContentLoaded", () => {
     setupSearch('locate', 'locate');
     setupSearch('issue', 'issue');
 });
+function login(){
+    let name = document.getElementById("name").value.trim();
+    let roll = document.getElementById("roll").value.trim();
+    let bookInput = document.getElementById("book").value.toLowerCase().trim();
+    let authorInput = document.getElementById("author").value.toLowerCase().trim();
+
+    if(!name || !roll || !bookInput || !authorInput){
+        alert("Please fill all fields");
+        return;
+    }
+
+    let foundBook = books.find(b =>
+        b.title.toLowerCase().includes(bookInput) &&
+        b.author.toLowerCase().includes(authorInput)
+    );
+
+    if(!foundBook){
+        alert("Book not found!");
+        return;
+    }
+
+    // Save user
+    localStorage.setItem("username", name);
+
+    // ✅ SWITCH INSIDE MISSING SECTION
+    document.getElementById("loginSection").style.display = "none";
+    document.getElementById("qrSection").classList.remove("d-none");
+
+    // Show details
+    document.getElementById("bookDetails").innerHTML = `
+        <img src="${foundBook.img}" width="100" onerror="this.src='https://via.placeholder.com/100'">
+        <h5>${foundBook.title}</h5>
+        <p><strong>Author:</strong> ${foundBook.author}</p>
+        <p><strong>Amount:</strong> ₹${foundBook.price}</p>
+        <hr>
+        <p><strong>${name}</strong></p>
+        <p>UserID: ${roll}</p>
+    `;
+}
+
+function pay(){
+    let name = localStorage.getItem("username") || "User";
+    alert("Payment Successful ✅\nThank you " + name);
+}
+
