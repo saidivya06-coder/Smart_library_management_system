@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smart Library Payment</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    background: url("https://images.unsplash.com/photo-1507842217343-583bb7270b66") no-repeat center/cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* MAIN BOX */
+.main-box {
+    width: 750px;
+    border-radius: 15px;
+    padding: 30px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* HIDE */
+.hidden {
+    display: none;
+}
+
+/* QR LAYOUT */
+.qr-section {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* BOOK DETAILS */
+.book-box {
+    background: rgba(255,255,255,0.9);
+    padding: 15px;
+    border-radius: 10px;
+    width: 55%;
+}
+
+.book-box img {
+    width: 100px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* QR */
+.qr-box {
+    text-align: center;
+    width: 40%;
+}
+
+.qr-box img {
+    width: 180px;
+}
+
+/* INPUTS */
+.form-control, .form-select {
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+/* BUTTON */
+.btn-custom {
+    background: #6C8EBF;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="main-box">
+
+    <!-- LOGIN -->
+    <div id="loginSection">
+        <h3 class="text-center mb-3">📚 Smart Library Login</h3>
+
+        <input type="text" id="name" class="form-control" placeholder="Username">
+        <input type="email" id="email" class="form-control" placeholder="Email">
+        <input type="number" id="roll" class="form-control" placeholder="Roll Number">
+
+        <select id="branch" class="form-select">
+            <option>CSE</option>
+            <option>IT</option>
+            <option>ECE</option>
+        </select>
+
+        <input type="text" id="book" class="form-control" placeholder="Book Title">
+        <input type="text" id="author" class="form-control" placeholder="Author">
+
+        <button class="btn btn-custom w-100" onclick="login()">Continue</button>
+    </div>
+
+    <!-- QR + DETAILS -->
+    <div id="qrSection" class="hidden">
+        <h4 class="text-center mb-4">Payment & Book Details</h4>
+
+        <div class="qr-section">
+
+            <!-- BOOK DETAILS -->
+            <div class="book-box" id="bookDetails"></div>
+
+            <!-- QR -->
+            <div class="qr-box">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=payment">
+                <br><br>
+                <button class="btn btn-dark w-100" onclick="pay()">Pay</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+// 🔥 LOAD BOOKS FROM localStorage (from your data.js)
+let books = JSON.parse(localStorage.getItem("allBooks")) || [];
+
+function login(){
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let roll = document.getElementById("roll").value.trim();
+    let branch = document.getElementById("branch").value;
+    let bookInput = document.getElementById("book").value.toLowerCase().trim();
+    let authorInput = document.getElementById("author").value.toLowerCase().trim();
+
+    if(!name || !email || !roll || !bookInput || !authorInput){
+        alert("Please fill all fields");
+        return;
+    }
+
+    // 🔥 FLEXIBLE SEARCH
+    let foundBook = books.find(b =>
+        b.title.toLowerCase().includes(bookInput) &&
+        b.author.toLowerCase().includes(authorInput)
+    );
+
+    if(!foundBook){
+        alert("Book not found!");
+        return;
+    }
+
+    // SAVE USER
+    localStorage.setItem("username", name);
+
+    // SWITCH UI
+    document.getElementById("loginSection").style.display = "none";
+    document.getElementById("qrSection").classList.remove("hidden");
+
+    // SHOW DETAILS
+    document.getElementById("bookDetails").innerHTML = `
+        <img src="${foundBook.img}" onerror="this.src='https://via.placeholder.com/100'">
+        <h5>${foundBook.title}</h5>
+        <p><strong>Author:</strong> ${foundBook.author}</p>
+        <p><strong>Amount:</strong> ₹${foundBook.price}</p>
+        <hr>
+        <p><strong>${name}</strong></p>
+        <p>${email}</p>
+        <p>Roll: ${roll}</p>
+        <p>${branch}</p>
+    `;
+}
+
+function pay(){
+    let name = localStorage.getItem("username") || "User";
+    alert("Payment Successful ✅\nThank you " + name);
+}
+
+</script>
+
+</body>
+</html>

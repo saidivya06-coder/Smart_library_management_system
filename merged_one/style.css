@@ -60,15 +60,18 @@
 }
 
 /* SECTIONS */
-section{ padding: 80px 0; }
+section{
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+        scroll-margin-top: 80px; /* adjust based on navbar height */
+}
 
 /* FEATURE BOX */
 .feature-box{
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
+    background: rgb(255, 255, 255);
     border-radius: 15px;
     padding: 25px;
-    color: #fff;
+    color: black;
     transition: 0.4s;
 }
 
@@ -81,6 +84,26 @@ section{ padding: 80px 0; }
 /* DARK */
 .bg-dark{
     background: linear-gradient(to right, #2c1a18, #4A2C2A) !important;
+}
+/* Keep same background as About */
+.testimonial{
+    background: antiquewhite;
+    color: black;
+    position: relative;
+
+    /* spacing to connect nicely */
+    padding-top: 40px;
+}
+
+/* Divider line at top */
+.testimonial::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, rgba(0,0,0,0.5), transparent);
 }
 
 /* HEADINGS */
@@ -102,17 +125,16 @@ h2{
 
 /* ABOUT */
 .about-section{
-    background: url('../Images/Books/esra-afsar-5VZUBeY3mAw-unsplash.jpg') center/cover no-repeat;
-    position: relative;
+    background-color:antiquewhite;
+      position: relative;
     min-height: 500px;
-    color: white;
 }
 
 .about-section::before{
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.7);
+    background: white;
     z-index: 1;
 }
 
@@ -128,22 +150,12 @@ h2{
 
 /* CTA */
 .cta-section{
-    background: linear-gradient(135deg, #2c1a18, #4A2C2A);
+    background: linear-gradient(135deg, white,antiquewhite);
     position: relative;
     overflow: hidden;
     height: 500px;
 }
 
-.cta-section::before,
-.cta-section::after{
-    content: "";
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 50%;
-    filter: blur(80px);
-}
 
 .cta-section::before{
     top: -50px;
@@ -325,3 +337,28 @@ table img {
 }
 
 ul{ margin-left: 50px; }
+
+/* FAQ */
+.faq-section{
+    background-color:antiquewhite;
+      position: relative;
+    min-height: 500px;
+}
+
+.faq-section::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:linear-gradient(135deg,antiquewhite,white);
+    z-index: 1;
+}
+
+.faq-section .container{
+    position: relative;
+    z-index: 2;
+}
+
+.faq{
+    position: relative;
+    top: 75px;
+}
