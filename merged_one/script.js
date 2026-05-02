@@ -1,3 +1,4 @@
+
 class Book {
     constructor(id, img, title, author, location, count,price) {
         this.id = id;
@@ -255,73 +256,76 @@ detdiv.addEventListener("submit", function(e){
         const d = new Date();
         d.setDate(d.getDate() + 15);
 
-        alert(`The Book "${bookData.title}" by ${bookData.author} has been issued to \n User Id : ${userId}.\nReturn by ${d.toDateString()}`);
-
         document.getElementById("overlay").style.display = "none";
+            let issuedBooks = JSON.parse(localStorage.getItem(userId)) || [];
+             
+            if(issuedBooks.find(b => b.bookId === bookData.id)){
+                alert("This book is already issued to you.");
+                 return;
+                }
+ alert(`The Book "${bookData.title}" by ${bookData.author} has been issued to \n User Id : ${userId}.\nReturn by ${d.toDateString()}`);
+                issuedBooks.push({
+                    bookId: bookData.id,
+                    returnDate: d.toDateString()
+                });
+                localStorage.setItem(userId, JSON.stringify(issuedBooks));
+
+       console.log(localStorage.getItem(userId));
+       
     } 
     else {
         alert("Book is out of stock!");
     }
-    let issuedBooks = JSON.parse(localStorage.getItem("issuedBooks")) || [];
 
-        issuedBooks.push({
-            userId: userId,
-            bookId: bookData.id,
-            title: bookData.title,
-            returnDate: d.toDateString()
-        });
-
-        localStorage.setItem("issuedBooks", JSON.stringify(issuedBooks));
 });
-
-
 // ================= INITIALIZE =================
 document.addEventListener("DOMContentLoaded", () => {
     setupSearch('locate', 'locate');
     setupSearch('issue', 'issue');
 });
 function login(){
+    let Id = document.getElementById("id").value.trim();
     let name = document.getElementById("name").value.trim();
-    let roll = document.getElementById("roll").value.trim();
-    let bookInput = document.getElementById("book").value.toLowerCase().trim();
-    let authorInput = document.getElementById("author").value.toLowerCase().trim();
 
-    if(!name || !roll || !bookInput || !authorInput){
+    if(!Id || !name){
         alert("Please fill all fields");
         return;
     }
 
-    let foundBook = books.find(b =>
-        b.title.toLowerCase().includes(bookInput) &&
-        b.author.toLowerCase().includes(authorInput)
-    );
+    let usersbooks=JSON.parse(localStorage.getItem(Id)) || [];
 
-    if(!foundBook){
-        alert("Book not found!");
+    if(usersbooks.length===0){
+        alert("No book has been issued to the ID "+Id);
         return;
     }
-
-    // Save user
-    localStorage.setItem("username", name);
 
     // ✅ SWITCH INSIDE MISSING SECTION
     document.getElementById("loginSection").style.display = "none";
     document.getElementById("qrSection").classList.remove("d-none");
 
     // Show details
-    document.getElementById("bookDetails").innerHTML = `
+    usersbooks.forEach(ub => {
+        let foundBook = books.find(b => b.id === ub.bookId);
+        if(foundBook){
+    document.getElementById("qrSection").innerHTML += `
+     <div class="d-flex justify-content-center align-items-center gap-4 flex-wrap">
+        <div class="p-3 bg-light rounded">
         <img src="${foundBook.img}" width="100" onerror="this.src='https://via.placeholder.com/100'">
         <h5>${foundBook.title}</h5>
         <p><strong>Author:</strong> ${foundBook.author}</p>
         <p><strong>Amount:</strong> ₹${foundBook.price}</p>
         <hr>
-        <p><strong>${name}</strong></p>
-        <p>UserID: ${roll}</p>
+        </div>
+        <div class="text-center">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=payment">
+            <br><br>
+            <button class="btn btn-dark" onclick="pay()">Pay</button>
+        </div>
     `;
+        }});
 }
 
 function pay(){
-    let name = localStorage.getItem("username") || "User";
-    alert("Payment Successful ✅\nThank you " + name);
+    alert("Payment Successful ✅\nThank you " + name + "\nHope you never loose a book again!" );
 }
 
